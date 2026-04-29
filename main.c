@@ -7,14 +7,58 @@
 #define MAX(a ,b) (((a) > (b)) ? (a) : (b)) //函数式宏
 //以上都是预处理指令，宏常量，浮点，整数，函数式宏 都要加括号是为了防止在使用时出现优先级问题，整形不用加括号是因为它本身就是一个值，不会出现优先级问题，便于凭借
 
-const char const arr[2] = {"admin1","admin2"};
+const char *arr[] = {"admin1","admin2"};//字符串常量数组，const char const *arr[2] 是一个指向字符串常量的指针数组，arr[0] 指向 "admin1"，arr[1] 指向 "admin2"
+//字符串常量二维数组，const char const str[2][7] 是一个二维字符数组，str[0] 是一个包含 "admin1" 的字符串，str[1] 是一个包含 "admin2" 的字符串
+//字符串常量二维数组，const char const str[2][7] = {"admin1","admin2"}; 等价于
+const char str[2][7] = {
+    {"admin1"},
+    {"admin2"}
+}; 
+
+//结构体定制 每一个变量都有自己的内存空间，结构体可以将多个不同的结构体在组合成一个新的复杂的数据结构
+struct UserInfo{
+    char name[10];
+    int age;
+};
+
+//联合体 所有的变量都共用一个内存空间，联合体可以将不同的数据类型在组合成一个新的复杂的数据结构
+union Params{
+    int page;
+    int pageNum;
+    char name[10];
+};
+
+//枚举 枚举类型是一组命名整数常量，每个常量都有一个唯一的整型值，常量的值可以是任意整数，但一般用从0开始的连续整数。枚举类型可以用来代替整数常量，使代码更易读、更易理解。
+enum color{
+    red,
+    green,
+    blue
+};
+
 
 int add(int a,int b);//函数声明
+
+//函数定义
+int add(int a,int b){
+    return a + b;
+}
 
 int main(){
 
     //char account[10] = {'admin1', 'admin2', 'admin3', 'admin4', 'admin5', 'admin6', 'admin7', 'admin8', 'admin9', 'admin10'};
     printf("Hello World! \n");
+    struct UserInfo user;
+    user.age = 18;
+    printf("user age = %d\n",user.age);
+
+    union Params params;
+    params.page = 100;
+    printf("params page = %d\n",params.page);
+
+
+    printf("enum color red = %d\n",red);
+    printf("enum color green = %d\n",green);    
+    printf("enum color blue = %d\n",blue);
 
     // int num,num1,num2;
     // printf("请输入两个整数：");
@@ -26,21 +70,36 @@ int main(){
     // num = add(num1,num2);
     // printf("两个整数的和为：%d\n",num);
 
-    int i = 1;
-    unsigned char *p = (unsigned char*)&i;
-    //0小段，1 是大端
-    int b = (*p == 1) ? 0 : 1 ;
-    printf("b = %d\n",b);
+    // 验证cpu 内存时大端还是小端
+    // int i = 1;
+    // unsigned char *p = (unsigned char*)&i;
+    // //0小段，1 是大端
+    // int b = (*p == 1) ? 0 : 1 ;
+    // printf("b = %d\n",b);
 
+    char str2[10] = "admin12345";
+    char key = 0x55;
+    // for (int i = 0; i < 10; i++){
+    //     str2[i] ^= key;//加密
+    // }
+    // printf("加密后：%s\n",str2);
+    // for(int i = 0; i < 10; i++){
+    //     str2[i] ^= key;//解密
+    // }
+    // printf("解密后:%s\n",str2);
+    // printf("版本号:%s\n",sizeof(str2));
+
+    printf("地址：%p\n",&str2);
+
+    //指针函数
+    int (*funcAdd)(int,int);
+    funcAdd = add;
+    int result = funcAdd(10,20);
+    printf("10+20=%d\n",result);
     
-
 
     return EXIT_SUCCESS;
 
     
 }
 
-//函数定义
-int add(int a,int b){
-    return a + b;
-}
