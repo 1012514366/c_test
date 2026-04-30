@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdint.h> //stdint.h 头文件包含了一些标准数据类型，如int8_t, uint16_t等，这些数据类型在不同平台上可能有所不同，但它们的大小和位数是一致的。
 #include <stdlib.h> //stdlib.h 头文件包含了一些标准的库函数，如 malloc()、free()、exit()等。
+#include <string.h> //string.h 头文件包含了一些字符串处理函数，如 strcpy()、strcmp()等。
 #define VERSION "1.0.0"  //都是宏
 #define PI (3.1415923)   //浮点宏 加括号是为了防止在使用时出现优先级问题
 #define JZ (9)           //整数宏 加括号是为了防止在使用时出现优先级问题
@@ -16,24 +17,24 @@ const char str[2][7] = {
 }; 
 
 //结构体定制 每一个变量都有自己的内存空间，结构体可以将多个不同的结构体在组合成一个新的复杂的数据结构
-struct UserInfo{
+typedef struct{
     char name[10];
     int age;
-};
+} UserInfo;
 
 //联合体 所有的变量都共用一个内存空间，联合体可以将不同的数据类型在组合成一个新的复杂的数据结构
-union Params{
+typedef union{
     int page;
     int pageNum;
     char name[10];
-};
+} Params;
 
 //枚举 枚举类型是一组命名整数常量，每个常量都有一个唯一的整型值，常量的值可以是任意整数，但一般用从0开始的连续整数。枚举类型可以用来代替整数常量，使代码更易读、更易理解。
-enum color{
+typedef enum{
     red,
     green,
     blue
-};
+} color;
 
 
 int add(int a,int b);//函数声明
@@ -43,18 +44,30 @@ int add(int a,int b){
     return a + b;
 }
 
+void update(int *a,char *b);
+
+void update(int *a,char *b){
+    *a = 20;
+    b[0] = 'A';
+}
+
 int main(){
 
     //char account[10] = {'admin1', 'admin2', 'admin3', 'admin4', 'admin5', 'admin6', 'admin7', 'admin8', 'admin9', 'admin10'};
     printf("Hello World! \n");
-    struct UserInfo user;
+    UserInfo user;
     user.age = 18;
+    
+    strcpy(user.name,"admin");
     printf("user age = %d\n",user.age);
+    printf("user name = %s\n",user.name);
 
-    union Params params;
+    Params params;
     params.page = 100;
     printf("params page = %d\n",params.page);
-
+    update(&params.page,user.name);
+    printf("params page = %d\n",params.page);
+    printf("user name = %s\n",user.name);
 
     printf("enum color red = %d\n",red);
     printf("enum color green = %d\n",green);    
