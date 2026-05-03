@@ -73,15 +73,7 @@ int main(){
     printf("enum color green = %d\n",green);    
     printf("enum color blue = %d\n",blue);
 
-    // int num,num1,num2;
-    // printf("请输入两个整数：");
-    // int result = scanf("%d %d",&num1,&num2);
-    // if(result != 2){
-    //     printf("输入错误,请输入两个整数！\n");
-    //     return 0;
-    // }
-    // num = add(num1,num2);
-    // printf("两个整数的和为：%d\n",num);
+   
 
     // 验证cpu 内存时大端还是小端
     // int i = 1;
@@ -109,6 +101,54 @@ int main(){
     funcAdd = add;
     int result = funcAdd(10,20);
     printf("10+20=%d\n",result);
+
+    char str3[10] = "admin12345";
+    char str4[10] = "admin6789";
+    char str5[20];
+    strcpy(str5,str3);
+    printf("str5 = %s\n",str5);
+    strcat(str3,str4);
+    printf("str3 = %s\n",str3);
+    int len = strlen(str3);
+    printf("str3 length = %d\n",len);
+    signed int cmp = strcmp(str3,str4);
+    printf("str3 cmp str4 = %d\n",cmp);
+    char *p;
+    p = strstr(str3,"admin");
+    if(p){
+        printf("找到了子字符串：%s\n",p);
+    }else{
+        printf("未找到子字符串\n");
+    }
+    char *p1;
+    p1 = strchr(str3,'m');
+    if(p1){
+        printf("找到了字符：%c\n",*p1);
+    }else{
+        printf("未找到字符\n");
+    }
+    //输入输出函数
+    //char *p2;
+    //fgets(str5,20,stdin);
+    //printf("str5 = %s\n",str5);
+    //输入输出函数
+    // int c;
+    // c = getchar();
+    // printf("你输入的字符是：%c\n",c);
+    // putchar(c);
+    // printf("\n");
+     // int num,num1,num2;
+    // printf("请输入两个整数：");
+    // int result = scanf("%d %d",&num1,&num2);
+    // if(result != 2){
+    //     printf("输入错误,请输入两个整数！\n");
+    //     return 0;
+    // }
+    // num = add(num1,num2);
+    // printf("两个整数的和为：%d\n",num);
+
+
+
     
 
     return EXIT_SUCCESS;
