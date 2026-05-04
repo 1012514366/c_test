@@ -169,6 +169,29 @@ int main(){
     char *p5 = malloc(10);
     free(p5);
     p5 = NULL;
+ 
+    double d = 3.1415926;
+    printf("d = %le\n",d); //保留两位小数
+
+    // int year;
+
+    // printf("请输入年份：");
+    // scanf("%d",&year);
+    // if(year%4 == 0 && year%100 == 0 && year%400 == 0){
+    //     printf("%d 是闰年\n",year);
+    // }else{
+    //     printf("%d 不是闰年\n",year);
+    // }
+
+    int t = 0;
+    int y = 0;
+    for(t = 1;t<=9;t++){
+        for(y=1;y<=t;y++){
+            printf("%d*%d=%d \t",y,t,y*t);
+        }
+        printf("\n");
+    }
+
 
 
 
