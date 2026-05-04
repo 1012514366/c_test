@@ -17,10 +17,10 @@ const char str[2][7] = {
 }; 
 
 //结构体定制 每一个变量都有自己的内存空间，结构体可以将多个不同的结构体在组合成一个新的复杂的数据结构
-typedef struct{
+struct UserInfo{
     char name[10];
     int age;
-} UserInfo;
+} user;
 
 //联合体 所有的变量都共用一个内存空间，联合体可以将不同的数据类型在组合成一个新的复杂的数据结构
 typedef union{
@@ -55,7 +55,7 @@ int main(){
 
     //char account[10] = {'admin1', 'admin2', 'admin3', 'admin4', 'admin5', 'admin6', 'admin7', 'admin8', 'admin9', 'admin10'};
     printf("Hello World! \n");
-    UserInfo user;
+ 
     user.age = 18;
     
     strcpy(user.name,"admin");
@@ -146,6 +146,29 @@ int main(){
     // }
     // num = add(num1,num2);
     // printf("两个整数的和为：%d\n",num);
+    // scanf
+    //  %s %d %c %f
+    // printf
+    // getchar
+    // putchar
+    // fgets
+    // fopen r 读 w 写 a 追加
+    // fclose
+
+
+
+    
+    int length = sizeof(arr) / sizeof(arr[0]);
+    printf("数组长度：%d\n",length);
+
+    char p4[]= "hello world";
+    fputs(p4,stdout);
+    printf("\n");
+    
+    //自己像服务器声明一个内存，然后释放掉，并且指针悬空
+    char *p5 = malloc(10);
+    free(p5);
+    p5 = NULL;
 
 
 
