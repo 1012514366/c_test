@@ -192,6 +192,23 @@ int main(){
         printf("\n");
     }
 
+    int arr5[] = { 22, 34, 3, 32, 82, 55, 89, 50, 37, 5, 64, 35, 9, 70 };
+    int lenmm = sizeof(arr5) / sizeof(arr5[0]);
+    for(int i = 0; i < lenmm; i++){
+        for(int j = 0; j < lenmm - i - 1; j++){
+            if(arr5[j] < arr5[j + 1 ]){
+                int temp = arr5[j];
+                arr5[j] = arr5[j + 1];
+                arr5[j + 1] = temp;
+            }
+        }
+    }
+    printf("排序后：");
+    for(int i = 0; i < lenmm; i++){
+        printf("%d ",arr5[i]);
+    }
+    printf("\n");
+
 
 
 
